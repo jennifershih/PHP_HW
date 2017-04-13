@@ -19,6 +19,7 @@ $birth=date($_POST["birth"]);
 $city=$_POST["city"];
 
 $sql2="INSERT INTO phpim(name,school,birth,city)VALUES('$uname','$school','$birth','$city')";
+
 $result=mysqli_query($link,$sql2);
 
 $result=mysqli_query($link,"SELECT * FROM phpim");
