@@ -4,7 +4,7 @@ $link=@mysqli_connect(
 	'localhost', //MYSQL主機名稱
 	'root',      //使用者名稱
 	'qasw52791', //密碼
-	'php2017');   //預設使用的資料庫名稱
+	'php20170413');   //預設使用的資料庫名稱
 	
 
 if($link){
@@ -14,29 +14,38 @@ if($link){
 }
 
 $uname=$_POST["uname"];
+$school=$_POST["school"];
+$birth=date($_POST["birth"]);
 $city=$_POST["city"];
 
-$sql2="INSERT INTO phpim(name,city)VALUES('$uname','city')";
-$result=mysqli_query($link,$sql2);
+$sql2="INSERT INTO phpim(name,school,birth,city)VALUES('$uname','$school','$birth','$city');";
 
+$result=mysqli_query($link,$sql2); 
 $result=mysqli_query($link,"SELECT * FROM phpim");
+
+echo "請填入資料";
 
 echo "<table border=1>";
 while ($row=mysqli_fetch_assoc($result)) {
 echo "<tr>";
 	echo "<td>";
-	echo $row["no"];
+	echo $row["name"];
 	echo "</td>";
 
 	echo "<td>";
-	echo $row["name"];
+	echo $row["school"];
+	echo "</td>";
+
+	echo "<td>";
+	echo $row["birth"];
 	echo "</td>";
 
 	echo "<td>";
 	echo $row["city"];
 	echo "</td>";
+echo "</tr>";
 }
-echo "<table>";
+echo "</table>";
 
 mysqli_close($link);
 ?>
